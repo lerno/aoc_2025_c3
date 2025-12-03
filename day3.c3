@@ -35,6 +35,7 @@ fn long? solve1()
 
 fn long? solve2()
 {
+
 	long total;
 	File f = file::open("day3.txt", "rb")!;
 	defer (void)f.close();
