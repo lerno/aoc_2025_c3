@@ -23,13 +23,13 @@ fn long? solve1()
 {
 	int total;
 	File f = file::open("day3.txt", "rb")!;
-    defer (void)f.close();
-    while (try line = io::treadline(&f))
-    {
-        int[2] res = max_found(line[:^1]);
-        int[2] res2 = max_found(line[res[1] + 1..]);
-        total += (res[0] - '0') * 10 + res2[0] - '0';
-    }
+	defer (void)f.close();
+	while (try line = io::treadline(&f))
+	{
+		int[2] res = max_found(line[:^1]);
+		int[2] res2 = max_found(line[res[1] + 1..]);
+		total += (res[0] - '0') * 10 + res2[0] - '0';
+	}
 	return total;
 }
 
@@ -37,21 +37,21 @@ fn long? solve2()
 {
 	long total;
 	File f = file::open("day3.txt", "rb")!;
-    defer (void)f.close();
-    while (try line = io::treadline(&f))
-    {
-        int[2] res = max_found(line[:^11]);
-        long val = (long)res[0] - '0';
-        int pos = res[1];
-        for (int i = 11; i > 0; i--)
-        {
-            line = line[pos + 1..];
-	        res = max_found(line[..^i]);
-            pos = res[1];
-            val = val * 10 + (long)res[0] - '0';
-        }
-        total += val;
-    }
+	defer (void)f.close();
+	while (try line = io::treadline(&f))
+	{
+		int[2] res = max_found(line[:^11]);
+		long val = (long)res[0] - '0';
+		int pos = res[1];
+		for (int i = 11; i > 0; i--)
+		{
+			line = line[pos + 1..];
+			res = max_found(line[..^i]);
+			pos = res[1];
+			val = val * 10 + (long)res[0] - '0';
+		}
+		total += val;
+	}
 	return total;
 }
 
