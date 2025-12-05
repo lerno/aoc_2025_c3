@@ -93,7 +93,7 @@ fn int solve2(MapData data)
 
 fn void main()
 {
-	io::printn("Advent of code, day 3.");
+	io::printn("Advent of code, day 4.");
 	MapData map = load_map();
 	@pool()
 	{
