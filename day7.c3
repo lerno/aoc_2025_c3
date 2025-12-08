@@ -1,5 +1,5 @@
 /*
- * Advent of Code 2025 day 6
+ * Advent of Code 2025 day 7
  * Sample solution demonstrating C3 language and standard library.
  */
 import std::io, std::time, std::collections;
