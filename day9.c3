@@ -47,6 +47,7 @@ fn bool inside(Rect r, List{Vec} tiles)
 {
 	Vec prev = tiles[^1];
 	// Test if any tile would invalidate this rect.
+	// Assume convex shape!
 	foreach (t : tiles)
 	{
 		// Is the point inside?
