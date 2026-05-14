@@ -7,7 +7,7 @@ import std::io, std::time;
 bool[150][150] map;
 alias MapData = Slice2d{bool};
 
-const isz[<2>][8] DIRS = { { 1, 1 }, { 0, 1 }, { -1, 1 }, { 1, 0 }, { -1, 0 }, { 1, -1 }, { 0, -1 }, { -1, -1} };
+const sz[<2>][8] DIRS = { { 1, 1 }, { 0, 1 }, { -1, 1 }, { 1, 0 }, { -1, 0 }, { 1, -1 }, { 0, -1 }, { -1, -1} };
 int[150][150] neighbour_count;
 
 // First just load the map. Here we just keep an overdimensioned map.
@@ -30,14 +30,14 @@ fn MapData load_map() => @pool()
 fn void calculate_neighbours(MapData data)
 {
 	neighbour_count = {};
-	data.@each(;usz[<2>] pos, bool value)
+	data.@each(;sz[<2>] pos, bool value)
 	{
 		if (value)
 		{
 			// Update the neighbour count around it
 			foreach (dir : DIRS)
 			{
-				isz[<2>] inc_pos = (isz[<2>])pos + dir;
+				sz[<2>] inc_pos = pos + dir;
 				if (inc_pos.min() < 0) continue;
 				neighbour_count[inc_pos.y][inc_pos.x]++;
 			}
@@ -52,7 +52,7 @@ fn int solve1(MapData data)
 	// Now just walk through everything, summing the
 	// number that has 3 or fewer neighbours
 	int total;
-	data.@each(;usz[<2>] pos, bool value)
+	data.@each(;sz[<2>] pos, bool value)
 	{
 		if (value && neighbour_count[pos.y][pos.x] < 4) total++;
 	};
@@ -68,17 +68,17 @@ fn int solve2(MapData data)
 	do
 	{
 		removed = false;
-		data.@each(;usz[<2>] pos, bool value)
+		data.@each(;sz[<2>] pos, bool value)
 		{
 			if (value && neighbour_count[pos.y][pos.x] < 4)
 			{
 				// Don't remove this one again
-				neighbour_count[pos.y][pos.x] = int.max;
+				neighbour_count[pos.y][pos.x] = int::max;
 
 				// Decrease the neighbourhood count.
 				foreach (dir : DIRS)
 				{
-					isz[<2>] dec_pos = (isz[<2>])pos + dir;
+					sz[<2>] dec_pos = pos + dir;
 					if (dec_pos.min() < 0) continue; // Just avoid going to negative x,y
 					neighbour_count[dec_pos.y][dec_pos.x]--;
 				}

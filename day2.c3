@@ -18,7 +18,7 @@ fn long? repeats(String s, int repeats, bool high)
 {
 	int pieces = s.len / repeats;
 	// If not even divisible or just one repeat, return fault.
-	if (s.len % repeats || pieces < 2) return IMPOSSIBLE?;
+	if (s.len % repeats || pieces < 2) return IMPOSSIBLE~;
 
 	// Get the repeating part
 	String part = s[:repeats];
